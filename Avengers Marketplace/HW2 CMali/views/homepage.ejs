@@ -1,0 +1,32 @@
+
+<%- include('partials/header') -%>
+
+<body>
+<section class="loginSection mr-5 ml-5">  <!-- styling for section containing forms-->
+    <form action="/register" method="POST"> <!-- route for form-->
+      <h2>New User? Create an Account</h2>
+      <!--form to get input values by user on  regsiter side of webpage and pass them on button click-->
+      <label for="username">Choose a unique username</label><br />
+      <input type="text" id="fusername" name="userName" value="" /><br />
+
+      <label for="name">Enter your name:</label><br />
+      <input type="text" id="name" name="name" value="" /><br />
+
+      <label for="balance">Choose a starting balance:</label><br />
+      <input type="number" id="balance" name="balance" />
+
+      <input class="btn btn-primary mt-2" type="submit" value="Register" />
+    </form>
+
+            <!--form to get input value for username on login side of webpage and pass them on button click to display users webpage-->
+
+    <form action="/login" method="POST">
+      <h2>Log in to an Existing Account</h2>
+      <label for="username">Log in as</label><br />
+      <input type="text" id="fusername" name="userName" value="" /><br />
+      <input class="btn btn-primary mt-2" type="submit" value="Log In" />
+    </form>
+  </section>
+</body>
+
+<%- include('partials/footer') -%>

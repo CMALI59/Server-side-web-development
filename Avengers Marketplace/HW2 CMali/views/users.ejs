@@ -1,0 +1,105 @@
+<%- include('partials/header') -%>
+<body>
+<nav>
+    <!--form containing hello message to logged in user and logout button to return user to main page-->
+    <form class="title p-4" action="/" method="GET">
+        <h2>Hello, <%= locals.user.name %></h2>
+        <input style="background-color: red" class=" mt-2" type="submit" value="Log Out" />
+    </form>
+</nav>
+
+<section class="mr-5 ml-5">
+
+    <h3>At a glance</h3>
+
+    <hr />
+<!-- styled table to show users information -->
+    <table class="w-100 userTable">
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Current Balance</th>
+            <th>Items Owned</th>
+        </tr>
+
+        <tr>
+            <td>
+                <%=locals.user.name%>
+            </td>
+            <td>
+                <%=locals.user.userName%>
+            </td>
+            <td>
+                <%=locals.user.balance%>
+            </td>
+            <td>
+                <%=locals.user.items.length%>
+            </td>
+        </tr>
+        </table>
+
+    <hr />
+
+    <h4>Your Items</h4>
+
+    <ul class="useritems">
+        <% for(item of locals.user.items){%>     <!-- loop for printing out users items in card format-->
+            <li class="card bg-light">
+                <div class="card-body ">
+                    <h4>
+                        <%= item.name%>
+                    </h4>
+                    <span>Item ID: <%= item.id %></span>
+                </div>
+                <span class="card-footer">Price: $<%= item.price%></span>
+            </li>
+            <% }%>
+    </ul>
+
+    <hr />
+<!--form containning all items for sale not owned by the user along with a button to refresh the page and purchase item -->
+    <form action="/buy" method="POST">
+        <h2>Buy an Item</h2>
+        <ul class="useritems">
+            <% for(otherUser of locals.users) { %>           <!--loop set to get all users not current user-->
+                <% for(item of otherUser.items) { %>        <!-- loop set to retrieve all items from other users-->
+                    
+                    <!--condition statement to compare buyers balance to price of items per sale -->
+                    <% if (locals.user.balance >= item.price){ %>
+                    <li class="card bg-light">
+                        <input type="radio" name="id" value=<%=item.id%>>
+                        <div class="card-body">
+                            <h4>
+                                <%= item.name%>
+                            </h4>
+                            <span>Item ID: <%= item.id %></span>
+                            <br>
+                            <span> Owner: <%= otherUser.userName %></span>
+                        </div>
+                        <span class="card-footer">Price: $<%= item.price%></span>
+                    </li>
+                    <!--if buyers balance is less than an items price it will be translucent -->
+                        <%} else {%>
+                            <li class="card bg-light">
+                                <input type="radio" name="id" value=<%=item.id%>>
+                                <div style ="opacity: .3"class="card-body">
+                                    <h4>
+                                        <%= item.name%>
+                                    </h4>
+                                    <span>Item ID: <%= item.id %></span>
+                                    <br>
+                                    <span> Owner: <%= otherUser.userName %></span>
+                                </div>
+                                <span style ="opacity: .3" class="card-footer">Price: $<%= item.price%></span>
+                            </li>
+                        <%}%>
+                    <% } %>
+                        <% } %>
+        </ul>
+        <input type="hidden" name="buyer" value=<%=locals.user.userName%>>
+        <input class="w-100 btn btn-primary mt-5 mb-5" type="submit" value="Buy Now" />
+    </form>
+</section>
+</body>
+
+<%- include('partials/footer') -%>

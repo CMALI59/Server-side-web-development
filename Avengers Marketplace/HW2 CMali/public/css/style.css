@@ -1,0 +1,77 @@
+body {
+    background-image: url("../images/groot.jfif");
+
+    background-size: auto;
+  }
+  
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(36, 165, 224);
+    color: rgb(0, 0, 0);
+    text-align: left;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Create two equal columns that floats next to each other */
+  
+  /* Clear floats after the columns */
+  .title {
+    background-color: rgb(253, 230, 200);
+    text-align: center;
+  }
+  .alignment {
+    margin-left: 100px;
+  }
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+  
+  ul,
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .useritems {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .userTable > tbody > tr:first-child {
+    background-color: #8383f8;
+  }
+  
+  .userTable > tbody > tr:last-child {
+    background-color: #7cf0ff;
+  }
+  
+  h1 {
+    font-size: 1em;
+    margin-bottom: 0;
+  }
+  
+  .loginSection {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .loginSection > form:first-child {
+    border-right: 1px solid black;
+  }
+  
+  .loginSection > form > input {
+    width: 80%;
+  }
